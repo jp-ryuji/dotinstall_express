@@ -8,9 +8,13 @@ app.route('/')
     res.send('hello world!')
 })
 
-app.route('/users/:name')
+app.route('/users/:name?')
   .get(function(req, res) {
-    res.send('hello, ' + req.params.name)
+    if (req.params.name) {
+      res.send('hello, ' + req.params.name)
+    } else {
+      res.send('hello, nobody')
+    }
 })
 
 app.listen(3000)
