@@ -1,9 +1,11 @@
 'use strict'
 
 var express = require('express')
+var logger = require('morgan')
 var app = express()
 
 // middleware
+app.use(logger('dev'))
 app.use(express.static(__dirname + '/public_html'))
 
 app.route('/')
