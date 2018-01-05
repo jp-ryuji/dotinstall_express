@@ -22,5 +22,11 @@ app.route('/items/:id([0-9]+)')
     res.send('item no: ' + req.params.id)
 })
 
+app.route('/hello.txt')
+  .get(function(req, res) {
+    res.sendFile(__dirname + '/public_html/hello.txt')
+})
+
+
 app.listen(3000)
 console.log('server starting...')
