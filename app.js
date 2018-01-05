@@ -11,9 +11,20 @@ app.set('view engine', 'ejs')
 app.use(logger('dev'))
 app.use(express.static(__dirname + '/public_html'))
 
+app.param('id', function(req, res, next, id) {
+  var users = ['foo', 'bar', 'baz']
+  req.params.name = users[id]
+  next()
+})
+
 app.route('/')
   .get(function(req, res) {
     res.render('index', { title: 'title from app.js' })
+})
+
+app.route('/hello/:id')
+  .get(function(req, res) {
+    res.send('hello ' + req.params.name)
 })
 
 app.route('/users/:name?')
