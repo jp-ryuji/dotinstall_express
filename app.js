@@ -4,13 +4,16 @@ var express = require('express')
 var logger = require('morgan')
 var app = express()
 
+app.set('views', __dirname + '/views')
+app.set('view engine', 'ejs')
+
 // middleware
 app.use(logger('dev'))
 app.use(express.static(__dirname + '/public_html'))
 
 app.route('/')
   .get(function(req, res) {
-    res.send('hello world!')
+    res.render('index', { title: 'title from app.js' })
 })
 
 app.route('/users/:name?')
