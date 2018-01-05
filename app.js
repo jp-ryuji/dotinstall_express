@@ -3,6 +3,9 @@
 var express = require('express')
 var app = express()
 
+// middleware
+app.use(express.static(__dirname + '/public_html'))
+
 app.route('/')
   .get(function(req, res) {
     res.send('hello world!')
