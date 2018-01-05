@@ -10,6 +10,8 @@ app.set('view engine', 'ejs')
 // middleware
 app.use(logger('dev'))
 app.use(express.static(__dirname + '/public_html'))
+app.use(express.json())
+app.use(express.urlencoded())
 
 app.param('id', function(req, res, next, id) {
   var users = ['foo', 'bar', 'baz']
@@ -20,6 +22,16 @@ app.param('id', function(req, res, next, id) {
 app.route('/')
   .get(function(req, res) {
     res.render('index', { title: 'title from app.js' })
+})
+
+app.route('/new')
+  .get(function(req, res) {
+    res.render('new')
+})
+
+app.route('/create')
+  .post(function(req, res) {
+    res.send(req.body.name)
 })
 
 app.route('/hello/:id')
