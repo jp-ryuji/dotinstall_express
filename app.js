@@ -17,5 +17,10 @@ app.route('/users/:name?')
     }
 })
 
+app.route('/items/:id([0-9]+)')
+  .get(function(req, res) {
+    res.send('item no: ' + req.params.id)
+})
+
 app.listen(3000)
 console.log('server starting...')
